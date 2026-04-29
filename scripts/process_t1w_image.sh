@@ -32,14 +32,14 @@ echo "done"
 if [[ "${sub_id:0-1}" != "${baseline_indicator}" ]]; then
 
 	echo -n "[Subject ${sub_id}] Rigidly registering T1w image to baseline T1w image ... "
-	${NIFTYREG_BIN_DIR}/reg_aladin -ref ${t1w_img_file_reg_baseline} -flo ${t1w_img_file_reg} -aff ${DOFS_DIR}/${sub_id}_initial_rigid_transform.mat -res ${tmp_dir}/temp_${sub_id}_T1w_longitudinal_rig_result.nii.gz -rigOnly -voff	
+	${NIFTYREGPATH}/reg_aladin -ref ${t1w_img_file_reg_baseline} -flo ${t1w_img_file_reg} -aff ${DOFS_DIR}/${sub_id}_initial_rigid_transform.mat -res ${tmp_dir}/temp_${sub_id}_T1w_longitudinal_rig_result.nii.gz -rigOnly -voff	
 	echo "done"
 	
 	echo -n "[Subject ${sub_id}] Overwriting T1w image with baseline T1w image ... "
 	cp ${t1w_img_file_reg_baseline} ${t1w_img_file_reg}
 	echo "done"
 else
-	${NIFTYREG_BIN_DIR}/reg_transform -makeAff 0 0 0 0 0 0 1 1 1 0 0 0 ${DOFS_DIR}/${sub_id}_initial_rigid_transform.mat
+	${NIFTYREGPATH}/reg_transform -makeAff 0 0 0 0 0 0 1 1 1 0 0 0 ${DOFS_DIR}/${sub_id}_initial_rigid_transform.mat
 fi
 
 rm -rf ${tmp_dir}

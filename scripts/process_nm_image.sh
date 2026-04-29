@@ -18,7 +18,7 @@ nm_img_file_reg=${REG_DIR}/${sub_id}_${type}.nii.gz
 
 if [[ -f ${nm_img_file_orig} ]]; then
 	echo -n "[Subject ${sub_id}] Computing initial transformed ${type} image in T1w space ... "
-	${NIFTYREG_BIN_DIR}/reg_resample -ref ${t1w_img_file_reg} -flo ${nm_img_file_orig} -res ${nm_img_file_reg} -trans ${DOFS_DIR}/${sub_id}_initial_rigid_transform.mat -voff 
+	${NIFTYREGPATH}/reg_resample -ref ${t1w_img_file_reg} -flo ${nm_img_file_orig} -res ${nm_img_file_reg} -trans ${DOFS_DIR}/${sub_id}_initial_rigid_transform.mat -voff 
 	echo "done"
 	
 	echo -n "[Subject ${sub_id}] Running N4 on initial transformed ${type} image ... "
@@ -30,6 +30,6 @@ if [[ -f ${nm_img_file_orig} ]]; then
 	echo "done"
 	
 	echo -n "[Subject ${sub_id}] Rigidly registering initial transformed ${type} image to T1w image ... "
-	${NIFTYREG_BIN_DIR}/reg_aladin -ref ${t1w_img_file_reg} -flo ${nm_img_file_reg} -aff ${DOFS_DIR}/${sub_id}_${type}_to_${sub_id}_T1w.mat -res ${nm_img_file_reg} -rigOnly -ln 1 -voff	
+	${NIFTYREGPATH}/reg_aladin -ref ${t1w_img_file_reg} -flo ${nm_img_file_reg} -aff ${DOFS_DIR}/${sub_id}_${type}_to_${sub_id}_T1w.mat -res ${nm_img_file_reg} -rigOnly -ln 1 -voff	
 	echo "done"
 fi

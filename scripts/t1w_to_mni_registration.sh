@@ -25,19 +25,19 @@ if [[ "${sub_id:0-1}" == "${baseline_indicator}" ]]; then
 	echo "done"
 	
 	echo -n "[Subject ${sub_id}] Affinely registering temporal brain-extracted T1w image to T1w MNI template ... "
-	${NIFTYREG_BIN_DIR}/reg_aladin -ref ${TEMPLATE_DIR}/brain_masked.nii.gz -flo ${tmp_dir}/temp_${sub_id}_T1w_masked.nii.gz -aff ${DOFS_DIR}/${sub_id}_T1w_to_template_aff.mat -res ${tmp_dir}/temp_${sub_id}_T1w_aff_result.nii.gz -voff > /dev/null
+	${NIFTYREGPATH}/reg_aladin -ref ${TEMPLATE_DIR}/brain_masked.nii.gz -flo ${tmp_dir}/temp_${sub_id}_T1w_masked.nii.gz -aff ${DOFS_DIR}/${sub_id}_T1w_to_template_aff.mat -res ${tmp_dir}/temp_${sub_id}_T1w_aff_result.nii.gz -voff > /dev/null
 	echo "done"
 
 	echo -n "[Subject ${sub_id}] Affinely registering temporal brain-extracted T1w image to T1w MNI template (ROI only) ... "
-	${NIFTYREG_BIN_DIR}/reg_aladin -ref ${TEMPLATE_DIR}/brain_masked.nii.gz -flo ${tmp_dir}/temp_${sub_id}_T1w_masked.nii.gz -inaff ${DOFS_DIR}/${sub_id}_T1w_to_template_aff.mat -aff ${DOFS_DIR}/${sub_id}_T1w_to_template_aff.mat -res ${tmp_dir}/temp_${sub_id}_T1w_aff_result.nii.gz -rmask ${TEMPLATE_DIR}/ROI_mask.nii.gz -voff > /dev/null
+	${NIFTYREGPATH}/reg_aladin -ref ${TEMPLATE_DIR}/brain_masked.nii.gz -flo ${tmp_dir}/temp_${sub_id}_T1w_masked.nii.gz -inaff ${DOFS_DIR}/${sub_id}_T1w_to_template_aff.mat -aff ${DOFS_DIR}/${sub_id}_T1w_to_template_aff.mat -res ${tmp_dir}/temp_${sub_id}_T1w_aff_result.nii.gz -rmask ${TEMPLATE_DIR}/ROI_mask.nii.gz -voff > /dev/null
 	echo "done"
 
 	echo -n "[Subject ${sub_id}] Non-linearly registering temporal brain-extracted T1w image to T1w MNI template (ROI only) ... "
-	${NIFTYREG_BIN_DIR}/reg_f3d --lncc 0.5 -be 0.05 -pad 0 -sx 5 -ref ${TEMPLATE_DIR}/brain_masked.nii.gz -flo ${tmp_dir}/temp_${sub_id}_T1w_masked.nii.gz -aff ${DOFS_DIR}/${sub_id}_T1w_to_template_aff.mat -cpp ${DOFS_DIR}/${sub_id}_T1w_to_template_ffd.nii.gz -res ${tmp_dir}/temp_${sub_id}_T1w_ffd_result.nii.gz -rmask ${TEMPLATE_DIR}/ROI_mask.nii.gz -voff > /dev/null
+	${NIFTYREGPATH}/reg_f3d --lncc 0.5 -be 0.05 -pad 0 -sx 5 -ref ${TEMPLATE_DIR}/brain_masked.nii.gz -flo ${tmp_dir}/temp_${sub_id}_T1w_masked.nii.gz -aff ${DOFS_DIR}/${sub_id}_T1w_to_template_aff.mat -cpp ${DOFS_DIR}/${sub_id}_T1w_to_template_ffd.nii.gz -res ${tmp_dir}/temp_${sub_id}_T1w_ffd_result.nii.gz -rmask ${TEMPLATE_DIR}/ROI_mask.nii.gz -voff > /dev/null
 	echo "done"
 	
 	echo -n "[Subject ${sub_id}] Computing inverse transform of last non-linear registration ... "
-	${NIFTYREG_BIN_DIR}/reg_transform -ref ${TEMPLATE_DIR}/brain_masked.nii.gz -invNrr ${DOFS_DIR}/${sub_id}_T1w_to_template_ffd.nii.gz ${tmp_dir}/temp_${sub_id}_T1w_masked.nii.gz ${DOFS_DIR}/${sub_id}_template_to_T1w_ffd.nii.gz
+	${NIFTYREGPATH}/reg_transform -ref ${TEMPLATE_DIR}/brain_masked.nii.gz -invNrr ${DOFS_DIR}/${sub_id}_T1w_to_template_ffd.nii.gz ${tmp_dir}/temp_${sub_id}_T1w_masked.nii.gz ${DOFS_DIR}/${sub_id}_template_to_T1w_ffd.nii.gz
 	echo "done"
 else
 	dof_file_baseline_aff=${DOFS_DIR}/${sub_id::-2}-${baseline_indicator}_T1w_to_template_aff.mat

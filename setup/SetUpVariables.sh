@@ -9,13 +9,13 @@
 #
 
 # Path to NiftyReg bin/ folder
-export NIFTYREG_BIN_DIR=/usr/local/niftyreg/bin/
+export NIFTYREGPATH=/usr/local/niftyreg/bin/
 
 # Path to MATLAB bin/ folder
-export MATLAB_BIN_DIR=/usr/local/MATLAB/R2018a/bin/
+export MATLABPATH=/usr/local/MATLAB/R2018a/bin/
 
 # Path to ANTs main root folder
-export ANTSPATH=/usr/local/ANTs/ants-2.1.0-redhat/
+export ANTSPATH=/usr/local/ANTs/ants-2.6.5/bin/
 
 # Path to ROBEX main root folder
 export ROBEXPATH=/usr/local/ROBEX/ROBEX/
