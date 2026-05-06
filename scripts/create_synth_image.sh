@@ -61,7 +61,7 @@ if [[ -f ${nm_img_file} ]]; then
 		echo "done"
 
 		echo -n "[(Refined) Subject ${sub_id}] Non-linearly registering synthetic (${type} based) image to MNI space (ROI only) ... "
-		${NIFTYREGPATH}/reg_f3d --lncc 0.5 -be 0.05 -pad 0 -ln 1 -maxit 250 -ref ${TEMPLATE_DIR}/synth_template.nii.gz -flo ${REG_MNI_DIR}/${sub_id}_${type}.nii.gz -incpp ${DOFS_DIR}/${sub_id}_synth-${type}_to_template_ffd.nii.gz -cpp ${DOFS_DIR}/${sub_id}_synth-${type}_to_template_ffd.nii.gz -res ${REG_MNI_DIR}/${sub_id}_${type}.nii.gz -rmask ${TEMPLATE_DIR}/ROI_mask.nii.gz -voff > /dev/null
+		${NIFTYREGPATH}/reg_f3d --lncc 0.5 -be 0.05 -pad 0 -ln 1 -maxit 250 -ref ${TEMPLATE_DIR}/synth_template.nii.gz -flo ${synth_img_file} -incpp ${DOFS_DIR}/${sub_id}_synth-${type}_to_template_ffd.nii.gz -cpp ${DOFS_DIR}/${sub_id}_synth-${type}_to_template_ffd.nii.gz -res ${REG_MNI_DIR}/${sub_id}_${type}.nii.gz -rmask ${TEMPLATE_DIR}/ROI_mask.nii.gz -voff > /dev/null
 		echo "done"
 		
 		echo -n "[(Refined) Subject ${sub_id}] Computing inverse transform of last non-linear registration ... "

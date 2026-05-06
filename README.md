@@ -1,4 +1,4 @@
-# Parkinson's pipeline
+# Neuromelanin MRI processing pipeline
 
 ## Table of Contents
 
@@ -10,7 +10,7 @@
 <a id="prerequisities"></a>
 ## Prerequisities
 
-The Parkinson's Pipeline has the following software requirements:
+The Neuromelanin MRI processing pipeline has the following software requirements:
 
 1. A 64-bit Linux Operating System.
 
